@@ -15,7 +15,7 @@ import java.util.List;
 
 @Slf4j
 @AllArgsConstructor
-@RestController  //컨트롤러선언
+@RestController  //컨트롤러선언.
 public class UserController {
 
     @Autowired

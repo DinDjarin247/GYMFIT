@@ -13,6 +13,7 @@ import org.hibernate.validator.constraints.Length;
 @ToString // 데이터를 잘 받았는지 확인하는 메서드 대신 사용 어노테이션
 public class UserFormDto {
 
+
     @NotEmpty(message = "이메일은 필수 입력 값입니다.")
     @Email(message = "이메일 형식으로 입력해주세요.")
     private String userEmail;   // 사용자 이메일
