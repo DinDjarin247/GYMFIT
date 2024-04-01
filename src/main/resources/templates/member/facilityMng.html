@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="ko"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{member/layout/layout}">
+
+<th:block layout:fragment="script">
+  <script th:inline="javascript">
+        $(document).ready(function(){
+        /*
+            $("#searchBtn").on("click", function(e){
+                e.preventDefault();
+                page(0);
+            });
+            */
+        });
+        function page(page){
+            var searchBy = $("#searchBy").val();
+            var searchQuery = $("#searchQuery").val();
+
+            location.href = "/facility/facilities/" + page +
+                               "&searchBy=" + searchBy +
+                               "&searchQuery=" + searchQuery +
+                               "&test=true";
+
+
+        }
+    </script>
+</th:block>
+
+<div layout:fragment="content">
+  <table class="table">
+    <thead>
+    <tr>
+      <th>이용권 ID</th>
+      <th>이용권 코드</th>
+      <th>이용권 이름</th>
+      <th>이용권 가격</th>
+      <th>이용 횟수</th>
+      <th>이용 기간</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="facility, status: ${facilities.getContent()}">
+      <td th:text="${facility.facilityId}"></td>
+      <td><a th:href="'/facility/facility/'+${facility.facilityId}"
+             th:text="${facility.facilityClCd}"></a></td>
+      <td th:text="${facility.facilityNm}"></td>
+      <td th:text="${facility.facilityPrice}" ></td>
+      <td th:text="${facility.entranceNo}" ></td>
+      <td th:text="${facility.facilityTerm}" ></td>
+    </tr>
+    </tbody>
+  </table>
+  <form th:action="@{'facilities'}"
+        method="get" th:object="${facilitySearchDto}">
+    <div th:with="start=${(facilities.number/maxPage)*maxPage+1},
+end=(
+${(facilities.totalPages == 0) ? 1:
+ (start+(maxPage - 1) < facilities.totalPages ? start+(maxPage - 1) : facilities.totalPages)
+ })">
+      <ul class="pagination justify-content-center">
+        <li class="page-facility" th:classappend="${facilities.first}?'disabled'">
+          <a th:onclick="'javascript:page(' + ${facilities.number-1} +')'"
+             aria-label="Previous" class="page-link">
+            <span aria-hidden="true">Previous</span>
+          </a>
+        </li>
+        <li class="page-facility"
+            th:each="page: ${#numbers.sequence(start, end)}"
+            th:classappend="${facilities.number eq page-1} ? 'active' : '' ">
+          <a th:onclick="'javascript:page(' + ${page-1} + ')' "
+             th:inline="text" class="page-link">[[${page}]]</a>
+        </li>
+        <li class="page-facility" th:classappend="${facilities.last}?'disabled'">
+          <a th:onclick="'javascript:page(' + ${facilities.number+1} +')'"
+             aria-label="Next" class="page-link">
+            <span aria-hidden="true">Next</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+
+    <div class="form-inline justify-content-center">
+      <select th:field="*{searchBy}" class="form-control" style="width:auto">
+        <option value="facilityClCd">이용권 코드</option>
+        <option value="facilityNm">이용권 이름</option>
+      </select>
+      <input th:field="*{searchQuery}" type="text" class="form-control" placeholder="검색어를 입력하세요"/>
+      <button id="searchBtn" type="submit" class="btn btn-primary">검색</button>
+    </div>
+
+  </form>
+
+
+</div>
+
+
+</html>

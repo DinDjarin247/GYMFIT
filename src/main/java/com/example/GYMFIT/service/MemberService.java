@@ -1,10 +1,13 @@
 package com.example.GYMFIT.service;
 
 
+import com.example.GYMFIT.dto.FacilityFormDto;
 import com.example.GYMFIT.dto.MainMemberDto;
 import com.example.GYMFIT.dto.MemberFormDto;
 import com.example.GYMFIT.dto.MemberSearchDto;
+import com.example.GYMFIT.entity.Facility;
 import com.example.GYMFIT.entity.Member;
+import com.example.GYMFIT.repository.FacilityRepository;
 import com.example.GYMFIT.repository.MemberRepository;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
@@ -23,6 +26,12 @@ public class MemberService {
 
     @Autowired
     private final MemberRepository memberRepository;
+    @Autowired
+    private final FacilityRepository facilityRepository;
+
+    @Autowired
+    private final FacilityService facilityService;
+
 
     public List<Member> index(){ return memberRepository.findAll();}
 
@@ -30,7 +39,7 @@ public class MemberService {
         return memberRepository.findById(memId).orElse(null);
     }
 
-    public Long saveMember(MemberFormDto memberFormDto) throws  Exception{
+    public Long saveMember(MemberFormDto memberFormDto) throws Exception{
         Member member = memberFormDto.createMember();
         memberRepository.save(member);
         return member.getMemId();
@@ -50,6 +59,16 @@ public class MemberService {
         member.updateMember(memberFormDto);
         return member.getMemId();
     }
+
+    public Long inputFacToMem(MemberFormDto memberFormDto)throws Exception{
+        Member member = memberRepository.findById(memberFormDto.getMemId()).orElseThrow();
+        member.setFacilityId(memberFormDto.getFacility());
+        //멤버의 facilityId 정보를 set 하고 save를 호출한다
+        memberRepository.save(member);
+        return member.getMemId();
+    }
+
+
 
     @Transactional(readOnly = true) // 회원정보 특정조회
     public Page<Member> getAdminMemberPage(MemberSearchDto memberSearchDto,

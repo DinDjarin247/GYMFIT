@@ -12,7 +12,6 @@
     <div class="d-flex">
 
         <div class="wd50">
-
             <div class="h4" th:text="${member.memNm}">
                 회원이름
             </div>
@@ -45,13 +44,58 @@
                     <span th:text="${member.memEmlAdr}"></span>:Email 주소
                 </div>
             </div>
+
+
             <hr class="my-4">
+            <hr class="my-4">
+            <hr class="my-4">
+
+         <input type="hidden" id="facilityId" th:value="${member.Facility.facilityId}">
+           <div class="d-flex">
+
+                <div class="wd50">
+
+                  <div class="h4" th:text="${member.Facility.facilityNm}">
+                       이용권
+                    </div>
+                   <hr class="my-4">
+                  <div>
+                        <div class="h4 text-danger text-left">
+                            <input type="hidden" th:value="${member.Facility.facilityClCd}" id="facilityClCd" name="facilityClCD">
+                            <span th:text="${member.Facility.facilityClCd}"></span> : 이용권코드
+                        </div>
+                  </div>
+                    <hr class="my-4">
+                  <div>
+                        <div class="h4 text-danger text-left">
+                            <input type="hidden" th:value="${member.Facility.facilityPrice}" id="facilityPrice" name="facilityPrice">
+                            <span th:text="${member.Facility.facilityPrice}"></span> : 가격
+                        </div>
+                  </div>
+                    <hr class="my-4">
+                    <div>
+                        <div class="h4 text-danger text-left">
+                            <input type="hidden" th:value="${member.Facility.entranceNo}" id="entranceNo" name="entranceNo">
+                            <span th:text="${member.Facility.entranceNo}"></span> : 이용 횟수
+                        </div>
+                    </div>
+                    <hr class="my-4">
+                    <div>
+                        <div class="h4 text-danger text-left">
+                            <input type="hidden" th:value="${member.Facility.facilityTerm}" id="facilityTerm" name="facilityTerm">
+                            <span th:text="${member.Facility.facilityTerm}"></span> 이용 기간
+                        </div>
+                    </div>
+              </div>
+            </div>
+
+
+
 
 
 
 
         </div>
-
     </div>
 
 

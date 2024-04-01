@@ -1,5 +1,6 @@
 package com.example.GYMFIT.entity;
 
+import com.example.GYMFIT.dto.FacilityFormDto;
 import com.example.GYMFIT.dto.MemberFormDto;
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -7,7 +8,7 @@ import lombok.Setter;
 import lombok.ToString;
 
 
-import java.time.LocalDateTime;
+
 
 @Entity(name = "member")
 @Table(name="member")
@@ -20,6 +21,12 @@ public class Member {
     @Column(name = "member_id")
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long memId; //회원 ID
+
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "facility_id", nullable = true)
+    private Facility facilityId;  // 이용권  Id
+
     @Column(nullable = false)
     private String memNm; //회원 이름
     @Column(nullable = false)
@@ -31,8 +38,29 @@ public class Member {
     @Column(nullable = false)
     private String memEmlAdr; //회원 Email 주소
 
-    @Column
-    private String memRgtDt; //회원 등록일자
+//    @Column
+//    private String memRgtDt; //회원 등록일자
+//
+//    @Column
+//    private Long facilityClCd; //이용권 코드
+//
+//    @Column
+//    private String facilityNm; // 이용권 이름
+//
+//    @Column
+//    private int facilityPrice; // 이용권 가격
+//
+//    @Column
+//    private String facilityTerm; //이용 기간
+
+
+
+
+
+
+
+
+
 
     public static Member createMember(MemberFormDto memberFormDto){
         Member member = new Member();
@@ -52,6 +80,7 @@ public class Member {
         this.memEmlAdr = memberFormDto.getMemEmlAdr();
 
     }
+
 
 
 }

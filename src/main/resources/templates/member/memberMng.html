@@ -38,6 +38,7 @@
                 <th>회원전화번호</th>
                 <th>회원주소</th>
                 <th>회원 Email 주소</th>
+                <th>이용권</th>
             </tr>
             </thead>
             <tbody>
@@ -49,6 +50,10 @@
                 <td th:text="${member.memCno}" ></td>
                 <td th:text="${member.memAdr}" ></td>
                 <td th:text="${member.memEmlAdr}" ></td>
+                <td>
+                    <a th:href="'/members/member/'+${member.memId}"
+                       th:text="${member.facilityId}"></a>
+                </td>
             </tr>
             </tbody>
         </table>
