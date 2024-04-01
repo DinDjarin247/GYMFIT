@@ -14,14 +14,12 @@ public class UserService {
 
     @Autowired
     private final UserRepository userRepository;
-
     public User create(UserFormDto dto) {
-        User user = dto.toEntity(); //dto->엔티티로 변환한 후 User에 저장
-        if(user.getId() != null ){   // user 객체에 id가 존재한다면(null이 아니라면) null을 반환하는 코드 추가
-            return null;
+        // 사용자 이메일이 이미 존재하는지 확인
+        if(!userRepository.existsByUserEmail(dto.getUserEmail())){
+            User user = dto.toEntity(); //dto->엔티티로 변환한 후 User에 저장
+            return userRepository.save(user);  // 사용자 저장 후 반환
         }
-        return userRepository.save(user);  //user을 DB에 저장
+        return null;  // 이미 존재하는 사용자 이메일이라면 null반환
     }
-
-
 }
