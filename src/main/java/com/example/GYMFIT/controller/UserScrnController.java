@@ -35,7 +35,7 @@ public class UserScrnController {
             return "users/userLoginForm";   // 경로를 변경하면 된다.<임의경로>    // 회원가입이 성공하면 여기로 온다.
         }else{
             model.addAttribute("errorMessage", "실패, 다시 ㄱㄱㄱ");    // 이부분은 아직 실행이 안됨.
-            return "redirect:/users/new-page";   // 이미 존재하는 이메일이면 여기로 돌아옴(가입안될 시)
+            return "redirect:/users/new-page?errorMessage=EmailAlreadyExists";   // 이미 존재하는 이메일이면 여기로 돌아옴(가입안될 시)
         }
     }
 }
