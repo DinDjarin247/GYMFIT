@@ -20,6 +20,6 @@ public class UserService {
             User user = dto.toEntity(); //dto->엔티티로 변환한 후 User에 저장
             return userRepository.save(user);  // 사용자 저장 후 반환
         }
-        return null;  // 이미 존재하는 사용자 이메일이라면 null반환.
+        return null;  // 이미 존재하는 사용자 이메일이라면 null반환..
     }
 }
