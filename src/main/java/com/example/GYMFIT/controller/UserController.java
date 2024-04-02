@@ -11,14 +11,15 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @Slf4j
+@RequestMapping("/users")
 @AllArgsConstructor
-@RestController  //컨트롤러선언.
+@RestController  //컨트롤러선언
 public class UserController {
 
     @Autowired
     private UserService userService;
 
-    @PostMapping("/users/new")  // 회원생성요청처리
+    @PostMapping("/new")  // 회원생성요청처리
     public ResponseEntity<User> newUser(@RequestBody UserFormDto dto) {   //RequestBody는 Json데이터로 받아와야함
         User created = userService.create(dto); //서비스로 생성
         if (created != null) {
