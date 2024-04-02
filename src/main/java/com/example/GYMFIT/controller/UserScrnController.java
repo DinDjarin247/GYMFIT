@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Slf4j
 @AllArgsConstructor
 @RequestMapping("/users")
-@Controller  //컨트롤러선언
+@Controller  //컨트롤러선언.
 public class UserScrnController {
 
     @Autowired
