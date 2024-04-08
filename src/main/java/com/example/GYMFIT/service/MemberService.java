@@ -1,17 +1,13 @@
 package com.example.GYMFIT.service;
 
 
-import com.example.GYMFIT.dto.FacilityFormDto;
 import com.example.GYMFIT.dto.MainMemberDto;
 import com.example.GYMFIT.dto.MemberFormDto;
 import com.example.GYMFIT.dto.MemberSearchDto;
-import com.example.GYMFIT.entity.Facility;
 import com.example.GYMFIT.entity.Member;
 import com.example.GYMFIT.repository.FacilityRepository;
 import com.example.GYMFIT.repository.MemberRepository;
 import jakarta.persistence.EntityNotFoundException;
-import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -21,17 +17,16 @@ import java.util.List;
 
 @Service
 @Transactional
-@RequiredArgsConstructor
 public class MemberService {
-
-    @Autowired
     private final MemberRepository memberRepository;
-    @Autowired
     private final FacilityRepository facilityRepository;
-
-    @Autowired
     private final FacilityService facilityService;
 
+    public MemberService(MemberRepository memberRepository, FacilityRepository facilityRepository, FacilityService facilityService) {
+        this.memberRepository = memberRepository;
+        this.facilityRepository = facilityRepository;
+        this.facilityService = facilityService;
+    }
 
     public List<Member> index(){ return memberRepository.findAll();}
 

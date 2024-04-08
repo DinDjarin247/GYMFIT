@@ -75,7 +75,7 @@ public class MemberController {
             model.addAttribute("facilitySearchDto", facilitySearchDto);
             model.addAttribute("maxPage",5);
 
-            return "member/memberForm";
+            return "member/memberFormEdit";
         } catch (EntityNotFoundException e) {
             model.addAttribute("errorMessage", "해당 회원 없음");
             model.addAttribute("memberFormDto", new MemberFormDto());

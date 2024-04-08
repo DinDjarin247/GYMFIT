@@ -15,8 +15,8 @@ import java.util.List;
 public interface FacilityRepository extends CrudRepository<Facility, Long>, FacilityRepositoryCustom ,
         JpaRepository<Facility, Long>, QuerydslPredicateExecutor<Facility> {
 
-    @Query("SELECT f FROM facility f WHERE f.facilityClCd = %:facilityClCd% ORDER BY  f.facilityNm desc")
-    List<Facility> findByFacilityClCd(@Param("facilityClCd") Long facilityClCd);
+//    @Query("SELECT f FROM facility f WHERE f.facilityClCd = %:facilityClCd% ORDER BY  f.facilityNm desc")
+//    List<Facility> findByFacilityClCd(@Param("facilityClCd") Long facilityClCd);
 
 
     @Override

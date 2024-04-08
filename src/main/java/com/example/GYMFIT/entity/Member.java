@@ -10,7 +10,7 @@ import lombok.ToString;
 
 
 
-@Entity(name = "member")
+@Entity(name="member")
 @Table(name="member")
 @Getter
 @Setter
@@ -38,8 +38,8 @@ public class Member {
     @Column(nullable = false)
     private String memEmlAdr; //회원 Email 주소
 
-//    @Column
-//    private String memRgtDt; //회원 등록일자
+    @Column(nullable = false)
+    private String memRgtDt; //회원 등록일자
 //
 //    @Column
 //    private Long facilityClCd; //이용권 코드

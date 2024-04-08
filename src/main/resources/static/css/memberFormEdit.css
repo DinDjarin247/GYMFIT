@@ -1,8 +1,21 @@
-html,
-body {
-  height: 100%;
+*{
+    margin : 0;
+    padding : 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+.container{
+    max-width: 700px;
+    adding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
 }
 
+
+.w-100 btn btn-primary btn-lg{
+width : 100px;
+}
 form img {
     padding-bottom: 50px;
 }
@@ -35,7 +48,9 @@ form img {
   user-select: none;
 }
 
-@media (min-width: 768px) {
+
+
+/*@media (min-width: 768px) {
   .bd-placeholder-img-lg {
     font-size: 3.5rem;
   }
@@ -43,7 +58,7 @@ form img {
     width: 100%;
   }
 }
-
+*/
 
 
 /* .b-example-divider {
@@ -145,11 +160,19 @@ h2{
   padding-right: 50px;
 }
 
-.row{
-    margin : auto;
-    max-width : 700px;
-    padding-top: 0;
-}
-.container{
-    max-width: 700px;
+.card_dk_fac_mng{
+    margin: 20px;
+    padding: 20px 5px 5px 5px;
+    margin-bottom: 50px;
+    position: relative;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #fff;
+    background-clip: border-box;
+    border: 1px solid rgba(0, 0, 0, .125);
+    border-radius: .25rem;
 }

@@ -7,6 +7,6 @@ import org.springframework.web.bind.annotation.RestController;
 public class firstController {
     @GetMapping("/api/hello")
     public String hello(){
-        return "{\"hello\" : \"hello world\"}";      //"hello world!";
+        return "{\"secondProject(24.03.27~24.04.03 )\" : \"모두 고생하셨습니다\"}";      //"hello world!";
     }
 }
